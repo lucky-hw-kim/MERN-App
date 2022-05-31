@@ -1,6 +1,7 @@
 import React from 'react'
 import PostSide from '../../components/PostSide/PostSide'
 import ProfileSide from '../../components/profileSide/ProfileSide'
+import RightSide from '../../components/rightSide/RightSide'
 import './Home.css'
 
 export default function Home() {
@@ -8,7 +9,7 @@ export default function Home() {
     <div className='Home'>
       <ProfileSide/>
       <PostSide/>
-      <div className='RightSide'>Rightside</div>
+      <RightSide/>
     </div>
   )
 }

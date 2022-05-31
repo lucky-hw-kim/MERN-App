@@ -16,11 +16,11 @@ const Post = ({data}) => {
         <img src={Share} alt="share" />
       </div>
 
-      <span style={{color: "var(--gray)", fontSize: '12px'}}>{data.llikes} likes</span>
+      <span style={{color: "var(--gray)", fontSize: '12px'}}>{data.likes} likes</span>
 
       <div className='details'>
-        <span><b>{data.name}</b></span>
-        <span>{data.desc}</span>
+        <span><b>{data.name}</b> </span>
+        <span> {data.desc}</span>
       </div>
     </div>
   )

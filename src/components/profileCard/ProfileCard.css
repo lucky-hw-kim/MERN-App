@@ -6,6 +6,7 @@
   gap: 1rem;
   overflow-x: clip;
   background: var(--cardColor);
+  padding-bottom: 2rem;
 }
 
 .ProfileImages{
@@ -92,4 +93,5 @@
     align-self: center;
     margin-bottom: 1rem;
     cursor: pointer;
+
 }
