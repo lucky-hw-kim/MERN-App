@@ -49,7 +49,6 @@
 }
 
 
-
 .infoForm{
   display: flex;
   flex-direction: column;
@@ -88,6 +87,8 @@
     background-color: var(--cardColor);
     border-radius: 1rem;
     padding: 1rem;
+    width: fit-content;
+    max-width: 50vw;
 }
 
 .authForm>div{
