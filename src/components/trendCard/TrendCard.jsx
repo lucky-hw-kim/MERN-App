@@ -6,11 +6,11 @@ import {TrendData} from '../../Data/TrendData'
   return (
     <div className="TrendCard">
       <h3>Trends for you</h3>
-      {TrendData.map((trend)=>{
+      {TrendData.map((trend, id)=>{
         return (
-          <div className='trend'>
-            <span>#{trend.name}</span>
-            <span>{trend.shares}k shares</span>
+          <div className='trend' key={id}>
+            <span >#{trend.name}</span>
+            <span >{trend.shares}k shares</span>
           </div>
         )
       })}

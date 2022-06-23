@@ -1,40 +1,45 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Cover from "../../img/cover.jpg";
 import Profile from "../../img/profileImg.jpg";
 import "./ProfileCard.css";
 
-export default function ProfileCard() {
-  const ProfilePage = true;
+export default function ProfileCard({location}) {
+  const {user} = useSelector(state => state.authReducer.authData)
+  const posts = useSelector(state => state.postReducer.posts)
+  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
+
   return (
     <div className="ProfileCard">
       <div className="ProfileImages">
-        <img src={Cover} alt="" />
-        <img src={Profile} alt="" />
+        <img src={user.coverPicture? serverPublic + user.converPicture : Cover} alt="" />
+        <img src={user.profilePicture? serverPublic + user.profilePicture : Profile} alt="" />
       </div>
 
       <div className="ProfileName">
-        <span>Lucky Kim</span>
-        <span>Junior Web Developer</span>
+        <span>{user.firstname}{user.lastname}</span>
+        <span>{user.worksAt ? user.worksAt : "Write about yourself"}</span>
       </div>
       
       <div className="followStatus">
         <hr />
         <div>
           <div className="follow">
-            <span>6,890</span>
+            <span>{user.followings.length}</span>
             <span>Followings</span>
           </div>
           <div className="vl"></div>
           <div className="follow">
-            <span>1</span>
+            <span>{user.followers.length}</span>
             <span>Followers</span>
           </div>
 
-          {ProfilePage && (
+          {location === 'profilePage' && (
             <>
               <div className="vl"></div>
               <div className="follow">
-                <span>3</span>
+                <span>{posts.filter(post => post.userId === user._id).length}</span>
                 <span>Posts</span>
               </div>
             </>
@@ -42,7 +47,11 @@ export default function ProfileCard() {
         </div>
         <hr />
       </div>
-      {ProfilePage ? "" : <span>My Profile</span>}
+      {location === 'profilePage' ? "" : <span>
+        <Link style = {{textDecoration: "none", color: "inherit"}} to ={`/profile/${user._id}`}>
+        My Profile
+        </Link>
+        </span>}
     </div>
   );
 }

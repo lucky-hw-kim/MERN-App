@@ -8,7 +8,7 @@ function FollowersCard() {
       <h3>Followers</h3>
       {Followers.map((follower, id)=>{
         return(
-          <div className='follower'>
+          <div className='follower' key={id}>
             <div>
               <img src={follower.img} alt="" className='followerImage' />
                 <div className='name'>
