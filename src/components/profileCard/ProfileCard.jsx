@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Cover from "../../img/cover.jpg";
-import Profile from "../../img/profileImg.jpg";
+import Profile from "../../img/profileImg.png";
 import "./ProfileCard.css";
 
 export default function ProfileCard({location}) {

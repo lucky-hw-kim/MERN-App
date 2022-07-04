@@ -2,6 +2,8 @@ import { Modal, useMantineTheme } from "@mantine/core";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { uploadImage } from "../../actions/uploadActions";
+import { updateUser } from "../../actions/UserAction";
 import './ProfileModal.css'
 
 function ProfileModal({ modalOpened, setModalOpened, data }) {
@@ -19,7 +21,43 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
   }
 
   const onImageChange = (e) => {
-    
+    if(e.target.files && e.target.files[0]){
+      let img = e.target.files[0];
+      e.target.name === "profileImage"
+      ? setProfileImage(img)
+      : setCoverImage(img);
+    }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let UserData = formData;
+    if (profileImage) {
+      const data = new FormData();
+      const fileName = Date.now() + profileImage.name;
+      data.append("name", fileName);
+      data.append("file", profileImage);
+      UserData.profilePicture = fileName;
+      try {
+        dispatch(uploadImage(data));
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    if (coverImage) {
+      const data = new FormData();
+      const fileName = Date.now() + coverImage.name;
+      data.append("name", fileName);
+      data.append("file", coverImage);
+      UserData.coverPicture = fileName;
+      try {
+        dispatch(uploadImage(data));
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    dispatch(updateUser(param.id, UserData));
+    setModalOpened(false);
   }
 
   return (
@@ -35,7 +73,7 @@ function ProfileModal({ modalOpened, setModalOpened, data }) {
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
     >
-      <form className="infoForm">
+      <form className="infoForm" onSubmit={handleSubmit}>
         <h3>Your info</h3>
 
         <div>
