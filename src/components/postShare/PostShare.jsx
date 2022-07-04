@@ -40,7 +40,6 @@ function PostShare() {
       data.append("name", fileName);
       data.append("file", image);
       newPost.image = fileName;
-      console.log(newPost);
       try {
         dispatch(uploadImage(data));
       } catch (error) {
